@@ -1,0 +1,67 @@
+
+@media screen and ( max-width: 960px) and (orientation: portrait) {
+    body {
+        font-size: 16px;		 /* 13px / 16px ( 1em == 16 pixels) */
+    }
+}
+
+@media screen and ( max-width: 960px) {
+
+    .workflow-column {
+        margin-bottom: 15px;
+        margin-right: 1.25%;
+    }
+
+    .workflow-title {
+        font-size: 0.9em;
+    }
+
+    #completionImage {
+        max-height: 250px;
+    }
+
+    .completion {
+        background: #f0f0ff;
+    }
+}
+
+
+@media screen and ( max-width: 768px) {
+    body {
+        font-size: 14px;		 /* 13px / 16px ( 1em == 16 pixels) */
+    }
+
+    .workflow-wrapper {
+    }
+
+    .workflow-column {
+        margin-bottom: 20px;
+        margin-right: 1.50%;
+    }
+
+    .workflow-title {
+        font-size: 0.85em;
+    }
+
+    #completionImage {
+        max-height: 200px;
+    }
+}
+
+@media screen and ( max-width: 361px) {
+    body {
+        font-size: 14px;		 /* 13px / 16px ( 1em == 16 pixels) */
+    }
+
+    .workflow-wrapper {
+    }
+
+    .workflow-column {
+        margin-bottom: 20px;
+        margin-right: 1.50%;
+    }
+
+    #completionImage {
+        max-height: 200px;
+    }
+}

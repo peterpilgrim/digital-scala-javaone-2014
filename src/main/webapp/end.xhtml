@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template.xhtml">
+    <ui:define name="headline">
+        <h1>Application Accepted</h1>
+    </ui:define>
+
+    <ui:define name="formArea">
+        <h3>Confirmation</h3>
+
+        <p>Details: To Be Completed</p>
+
+        <div class="wizard-form">
+            Well Done, you completed the form!
+
+            <h2> Reader Conference Exercises</h2>
+
+            <h3> Exercise A </h3>
+            <p>
+                The end of the form only has a text message. Extend the Conversation Form so that
+                applicant receive a unique reference number after completion.
+            </p>
+            <h3> Exercise B </h3>
+            <p>
+                After creating the reference number, then try this behavioural driven-design /
+                user story:
+                "As a consumer, given that I completed the applicant form I want to receive an
+                email with the summary of the details that I entered. I also want to see in the
+                email the unique  reference number."
+            </p>
+            <h3> Exercise C </h3>
+            <p>
+                As technical leader, I noticed that there is a lot duplicated content within the workflow,
+                namely: form2.xhtml,  form3.xhtml and end3.xhtml. What can we do to eradicate the same HTML Facelet
+                content?
+                Write an internationalisation message bundle to separate the text content from the values in the message.
+                Write another UI composition facelet to abstract away the summary views.
+                How can we get reuse of the summary views? (HINT: Maybe we need more types Section and Blocks)
+                What if the consumer wanted to edit the content in the summary?
+                How can we add a link to the summary view to allow users to edit?
+
+            </p>
+            <h3> Exercise D </h3>
+            <p>
+                Technical story. In order to improve scalability of the web application, lets at Java Message Services
+                to the application with a message queue.
+                The web application requires a message queue (a point-to-point).
+                First, create a JMS publisher that sends the applicant down the queue. Choose an appropriate
+                message type like MessageObject, which is the easiest or may be try JSON.
+                Second, creates a JMS subscriber that reads the message and then sends the email to the applicant.
+            </p>
+            <p>
+                HINT: A JMS subscriber in Java EE can be a Message Driven Bean.
+                You probably need to look inside my book, <em>The Java EE 7 Developer Handbook</em>,
+                for further details on the JMS 2.0 API.
+            </p>
+            <p>
+                The conversation scope has been terminated at this point
+            </p>
+            <a class="btn btn-primary" href="#{request.contextPath}">Go Home</a>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

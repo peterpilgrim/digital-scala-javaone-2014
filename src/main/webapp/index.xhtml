@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="headline">
+            <h1>Digital Scala Java EE 7 </h1>
+            <p>
+                Demonstration from CON2446 JavaOne
+
+            </p>
+        </ui:define>
+
+        <ui:define name="formArea">
+
+                    <h1> Application Web Page </h1>
+
+                    <p>
+                        This is your web page for a demo application.
+                    </p>
+
+                    <p>
+                        Group = <span class="blau">uk.co.xenonique.digitalone</span> <br/>
+                        ArtifactId = <span class="blau" >digital-scala-javaee7</span> <br/>
+                        Version = <span class="blau">1.0-SNAPSHOT</span> <br/>
+                    </p>
+
+                    <hr class="subfeaturette-divider" />
+
+                    <div ng-controller="HelloWorldController">
+                        <h2> Hello {{name}}! </h2>
+                        <input type="text" ng-model="name" />
+
+                        <ul ng-repeat="fruit in fruits">
+                            <li>{{ fruit.name }}</li>
+                        </ul>
+                    </div>
+
+
+                    <h2> Test JAX-RS Scala Services Endpoints</h2>
+                    <ul>
+                        <li>
+                            <a class="btn-large btn" href="#{request.contextPath}/rest/traveller"> GET TRAVELLER</a>
+                        </li>
+                        <li>
+                            <a class="btn-large btn" href="#{request.contextPath}/rest/traveller2"> GET TRAVELLER 2</a>
+                        </li>
+                        <li>
+                            <a class="btn-large btn" href="#{request.contextPath}/rest/users"> LIST REGISTERED USERS</a>
+                        </li>
+                        <li>
+                            <a class="btn-large btn" href="#{request.contextPath}/rest/users/jobs"> GET STEVE JOBS </a>
+                        </li>
+                        <li>
+                            <a class="btn-large btn" href="#{request.contextPath}/rest/alldata"> GET ALL DATA</a>
+                        </li>
+                        <li>
+                            <h:link styleClass="btn btn-primary btn-lg"
+                                    outcome="#{wizard.jumpGettingStarted()}">
+                                Apply Now!
+                            </h:link>
+                            Register Duke Driving License
+                        </li>
+                    </ul>
+
+        </ui:define>
+    </ui:composition>
+</html>

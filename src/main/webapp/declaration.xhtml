@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template.xhtml">
+    <ui:define name="headline">
+        <h1>Declaration Notice</h1>
+    </ui:define>
+
+    <ui:define name="formArea">
+        <h3>Your Details: </h3>
+
+        <div class="info-block">
+            <div class="pull-left">
+                Email:
+                <strong><h:outputText value="#{wizard.email}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Title:
+                <strong><h:outputText value="#{wizard.title}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                First Name:
+                <strong><h:outputText value="#{wizard.firstName()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Last Name:
+                <strong><h:outputText value="#{wizard.lastName()}"/></strong>
+            </div>
+        </div>
+
+        <h3>Your License:</h3>
+
+        <div class="info-block">
+            <div class="pull-left">
+                Driving License:
+                <strong><h:outputText value="#{wizard.drivingLicense()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Registration Date:
+                <strong><h:outputText value="#{wizard.registrationDate()}"/></strong>
+            </div>
+        </div>
+
+        <h3>Your Address:</h3>
+
+        <div class="info-block">
+            <div class="pull-left">
+                Street 1:
+                <strong><h:outputText value="#{wizard.street1()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Street 2:
+                <strong><h:outputText value="#{wizard.street2()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                City or Town:
+                <strong><h:outputText value="#{wizard.cityTown()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Region:
+                <strong><h:outputText value="#{wizard.region()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Post Code:
+                <strong><h:outputText value="#{wizard.postalCode()}"/></strong>
+            </div>
+        </div>
+
+
+        <h2> Complete The Declaration</h2>
+
+        <div class="wizard-form">
+            <h:form styleClass="form-horizontal">
+
+                <p>
+                    By confirming this declaration, you agreement fully and without dispute, whatsoever, wheneever and with multitude whoever,
+                    to the data will be stored on our servers, forever, forever.
+                    You will serve us beer, fish and chips for however long we require.
+                    You cannot ever terminate this contract.
+                    You will provide chocolate on Saturdays and Sundays.
+                    You will hand over the keys to the Honda Subaru.
+                    You will stay locked in vendor proprietary content.
+                    You will give the soul and exclusive permission to raid your cloud storage.
+                    You will give us no less than three shared Open SSL key so that we monitor you for affective length of this contract and
+                    until 6 months after it's conclusuion.
+                    You declare these statements above are fiction and false to your best comprehension, ability
+                    and especially declare that I AM NOT A LAWYER.
+                </p>
+
+                <p>
+                    I declare that:
+                </p>
+                <div class="control-group">
+                    <div class="radio">
+                        <h:selectOneRadio id="declaration" value="#{wizard.declaration}" layout="pageDirection">
+                            <f:selectItem itemValue="true"  itemLabel="I confirm the information that I entered is correct" />
+                            <f:selectItem itemValue="false" itemLabel="I do not confirm the information that I entered is correct" />
+                        </h:selectOneRadio>
+                        <h:message for="declaration" styleClass="form-error"/>
+                    </div>
+                </div>
+                <h:commandButton styleClass="btn btn-primary"
+                                 action="#{wizard.submitDeclarationPage()}"
+                                 value="Submit" />
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

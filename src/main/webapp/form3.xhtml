@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template.xhtml">
+    <ui:define name="headline">
+        <h1>Register Driving License</h1>
+    </ui:define>
+
+    <ui:define name="formArea">
+        <h3>Your Details: </h3>
+
+        <div class="info-block">
+            <div class="pull-left">
+                Email:
+                <strong><h:outputText value="#{wizard.email}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Title:
+                <strong><h:outputText value="#{wizard.title}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                First Name:
+                <strong><h:outputText value="#{wizard.firstName()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Last Name:
+                <strong><h:outputText value="#{wizard.lastName()}"/></strong>
+            </div>
+        </div>
+
+        <h3>Your License:</h3>
+
+        <div class="info-block">
+            <div class="pull-left">
+                Driving License:
+                <strong><h:outputText value="#{wizard.drivingLicense()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Registration Date:
+                <strong><h:outputText value="#{wizard.registrationDate()}"/></strong>
+            </div>
+        </div>
+
+        <h3>Your Address:</h3>
+
+        <div class="wizard-form">
+            <h:form styleClass="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="street1">Street 1</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="street1" placeholder="Ulica 123"
+                                     value="#{wizard.street1}" label="Street1">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="street1" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="street2">Donji Grad</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="street2" placeholder="Istok"
+                                     value="#{wizard.street2}" label="Street2"/>
+                        <h:message for="street2" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="cityTown">City Town</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="cityTown" placeholder="Zagreb"
+                                     value="#{wizard.cityTown}" label="City or Town">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="cityTown" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="region">Region or Area</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="region"
+                                     value="#{wizard.region}" label="Region"/>
+                        <h:message for="region" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="postCode">Croatian Postal Code</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="postCode" placeholder="12345"
+                                     value="#{wizard.postalCode}" label="Post Code">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="postCode" styleClass="form-error"/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <h:commandButton styleClass="btn btn-primary"
+                        action="#{wizard.submitPage3()}"
+                        value="Submit" />
+                &#160;
+                &#160;
+                <h:commandButton styleClass="btn btn-info"
+                                 immediate="true"
+                                 action="#{wizard.cancelApplication()}"
+                                 value="Cancel" />
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

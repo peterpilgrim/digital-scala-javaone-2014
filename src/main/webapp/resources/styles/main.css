@@ -1,0 +1,277 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-bottom: 40px;
+    color: #5a5a5a;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+.navbar-wrapper .navbar {
+
+}
+
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+    border: 0;
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+    padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav > li > a {
+    padding: 15px 20px;
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+    margin-top: 10px;
+}
+
+
+.main-container {
+    margin: 0px auto 0px auto;
+    max-width: 970px;
+}
+
+.main-content {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-top: 50px;
+}
+
+.header-content {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+}
+
+.footer-content {
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+.blau {
+    color: #00007F;
+}
+
+.featurette-divider {
+    width: 100%;
+}
+
+.subfeaturette-divider {
+    width: 85%;
+}
+
+.user-table {
+    width: 100%;
+    margin: 20px auto 20px auto;
+}
+
+.done-true {
+    text-decoration: line-through;
+    color: #52101d;
+}
+
+.my-group-border {
+    margin: 25px;
+    border: 1px solid #000000;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.form-error {
+    color: #ca4e34;
+    padding: 8px 0px 12px 0px;
+    margin: 8px;
+}
+
+.validation-error {
+    display: block;
+    margin: 5px 15px 5px 15px;
+    padding: 8px 15px 8px 15px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.monospace {
+    color: #000066;
+    border: 1px solid #000000;
+    padding: 10px 20px 10px 20px;
+    font-family: Consolas, Courier;
+}
+
+.workflow-wrapper {
+    margin: 5px;
+    padding: 5px 0px 5px 0px;
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    overflow: hidden;
+}
+
+.workflow-column {
+    min-width: 16%;
+    float: left;
+    margin-left: 0.05%;
+    margin-right: 0.05%;
+}
+
+.workflow-title.active {
+    background-color: #1802CC;
+    border: 1px solid #1802CC;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.workflow-title {
+    background-color: #FFB55C;
+    border: 1px solid #FFB55C;
+    color: #666666;
+    margin: 0px;
+    font-size: 1.10em;
+    min-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.workflow-arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #FFB55C;
+}
+
+.workflow-arrow-right {
+    width: 0;
+    height: 0;
+    border-top:     26px solid transparent;
+    border-bottom:  26px solid transparent;
+    border-left:    20px solid #FFB55C;
+}
+
+.workflow-arrow-down.active {
+    border-top: 20px solid #1802CC;
+}
+.workflow-arrow-right.active {
+    border-left: 20px solid #1802CC;
+}
+
+.monetary-text {
+    font-size: 2.0em;
+}
+
+.monetary-text-large {
+    font-size: 2.5em;
+}
+
+.content-wrapper {
+    margin: 1.5em 0.25em 2em 0.25em;
+}
+
+
+#completionImage {
+    max-height: 300px;
+}
+
+.completion {
+    background: #f0f0ff;
+}
+
+
+.done-true {
+    text-decoration: line-through;
+    color: #52101d;
+}
+
+.form-headline {
+    width: 98%;
+    margin: 5px auto 5px auto;
+}
+
+.wizard-form {
+    width: 98%;
+    margin: 25px auto 5px auto;
+    border-color: #00007F;
+    border-width: 1px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.wizard-wrapper {
+    width: 98%;
+    margin: 5px auto 5px auto;
+}
+
+
+#navbarLogo {
+    margin: 16px 20px 10px 20px;
+    width: 160px;
+}
+
+@media (max-width: 580px) {
+    #navbarLogo {
+        margin: 16px 10px 10px 10px;
+        width: 80px;
+    }
+}
+
+.form-error {
+    color: darkred;
+}
+
+.info-block {
+    width: 90%;
+    overflow: auto;
+    min-height: 32px;
+    font-size: 1.4em;
+    color: #000000;
+    padding-left: 32px;
+    padding-right: 48px;
+    background-color: #32c53e;
+    border: 1px solid #009900;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+.control-label {
+    font-size: 1.35em;
+}
+.controls {
+    font-size: 1.25em;
+}

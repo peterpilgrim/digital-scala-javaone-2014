@@ -1,0 +1,158 @@
+/*******************************************************************************
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ *
+ * Copyright (c) 2013,2014 by Peter Pilgrim, Addiscombe, Surrey, XeNoNiQUe UK
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU GPL v3.0
+ * which accompanies this distribution, and is available at:
+ * http://www.gnu.org/licenses/gpl-3.0.txt
+ *
+ * Developers:
+ * Peter Pilgrim -- design, development and implementation
+ *               -- Blog: http://www.xenonique.co.uk/blog/
+ *               -- Twitter: @peter_pilgrim
+ *
+ * Contributors:
+ *
+ *******************************************************************************/
+
+// Template based on Java EE 7 Developer Handbook by Peter A. Pilgrim
+// http://www.xenonique.co.uk/blog/ (CC) 2014
+
+apply plugin: 'scala'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+// Define equivalent Maven GAV coordinates.
+group = 'uk.co.xenonique.digitalone'
+archivesBaseName = 'digital-scala-javaee7'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://maven.java.net/content/groups/promoted'
+    }
+    maven {
+        url 'http://repository.jboss.org/nexus/content/groups/public'
+    }
+}
+
+dependencies {
+    // JBoss BOM (Bill of Materials) https://github.com/jboss/jboss-javaee-specs
+//    providedCompile 'org.jboss.spec:jboss-javaee-7.0:1.0.0.Final'
+//    providedCompile 'org.wildfly:wildfly-spec-api:8.1.0.Final'
+
+    providedCompile 'javax:javaee-api:7.0'
+
+//    providedCompile 'org.jboss.shrinkwrap:shrinkwrap-api:1.1.2'
+//    providedCompile 'org.jboss.shrinkwrap:shrinkwrap-impl-base:1.1.2'
+
+    compile 'joda-time:joda-time:2.3'
+    //needed to make joda-time compatible with scala compiler http://stackoverflow.com/questions/13856266/class-broken-error-with-joda-time-using-scala
+    compile 'org.joda:joda-convert:1.6'
+
+    compile 'org.scala-lang:scala-library:2.11.2'
+
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.scalatest:scalatest_2.11:2.2.0'
+    testCompile 'org.scalautils:scalautils_2.11:2.1.7'
+    testCompile 'org.scalamock:scalamock-scalatest-support_2.11:3.1.1'
+
+    testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.0.3.Final'
+    testCompile 'org.jboss.arquillian.container:arquillian-glassfish-managed-3.1:1.0.0.CR4'
+
+    compile(group: 'org.json4s', name: 'json4s-jackson_2.10', version: '3.2.9')
+    compile(group: 'org.json4s', name: 'json4s-ext_2.10', version: '3.2.9')
+
+    compile(group: 'org.apache.deltaspike.core', name: 'deltaspike-core-impl', version: '0.7')
+
+    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.3.3')
+    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.3.3')
+    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.3.3')
+    compile(group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.3.3')
+    compile(group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.10', version: '2.3.3')
+    compile(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: '2.3.3')
+
+// testCompile 'org.scalamock:scalamock-core_2.11:3.1.1'
+// testCompile 'org.scalamock:scalamock-scalatest-support_2.10:3.0.1'
+//    testCompile 'org.mockito:mockito-all:1.9.5'
+//    testCompile 'org.powermock:powermock-api-mockito:1.5.4'
+//    testCompile 'org.powermock:powermock-module-test-mockito-junit4:1.5.4'
+//    testCompile 'org.powermock:powermock-module-junit4:1.5.4'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+// Override Gradle defaults - a force an exploded JAR view
+sourceSets {
+    main {
+        output.resourcesDir = 'build/classes/main'
+        output.classesDir   = 'build/classes/main'
+    }
+    test {
+        resources {
+            srcDir 'src/test/resources'
+        }
+        resources {
+            srcDir 'src/test/resources-glassfish-managed'
+        }
+//        resources {
+//            srcDir 'src/test/resources-jbossas-embedded'
+//        }
+
+        output.resourcesDir = 'build/classes/test'
+        output.classesDir   = 'build/classes/test'
+    }
+}
+
+war {
+    // classpath  configurations.extralibs
+    // webXml = file("src/main/webapp/WEB-INF/web.xml")
+    // baseXml = "servlet-webapp"
+
+    // Exclude GlassFish embedded libraries and avoid java.io.IOException: com.sun.enterprise.admin.remote.RemoteFailureException: Error occurred during deployment: Exception while deploying the app [jsf-compositions-1.0-SNAPSHOT] : Servlet [ParticipantPortImpl] and Servlet [CoordinatorPortImpl] have the same url pattern: [/WSAT11Service].
+    rootSpec.exclude("**/glassfish-embedded-all-*.jar")
+    rootSpec.exclude("**/glassfish-embedded-runner-*.jar")
+}
+
+
+// Scala specific
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+task showScalaProps << {
+    compileScala.properties.each { println it }
+    compileScala.scalaCompileOptions.properties.each { println it }
+}
+
+compileScala.scalaCompileOptions.useCompileDaemon = true
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+    description = 'Runs the main application'
+    main = 'uk.co.xenonique.digitalone.AppMain'
+    classpath = sourceSets.main.runtimeClasspath
+    args 'Mary', 'Peter', 'Jane'
+    standardInput = System.in
+}
+
+//task(generateScript, dependsOn: 'classes') {
+//    description = 'Generates UNIX bash script that launches the program.'
+//    if (!System.properties['os.name'].toLowerCase().contains('windows')) {
+//        // Not Microsoft Windows
+//        new File("SampleRunner").withWriter { out ->
+//            out.println("#!/bin/bash")
+//            out.println("scala -cp ${sourceSets.main.runtimeClasspath.getAsPath()}  uk.co.xenonique.digitalone.AppMain")
+//        }
+//        "chmod 755 SampleRunner".execute()
+//    }
+//}
+

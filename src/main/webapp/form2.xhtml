@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template.xhtml">
+    <ui:define name="headline">
+        <h1>Register Driving License</h1>
+    </ui:define>
+
+    <ui:define name="formArea">
+        <h3>Your Details: </h3>
+        <div class="info-block">
+            <div class="pull-left">
+                Email:
+                <strong><h:outputText value="#{wizard.email}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Title:
+                <strong><h:outputText value="#{wizard.title}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                First Name:
+                <strong><h:outputText value="#{wizard.firstName()}"/></strong>
+            </div>
+        </div>
+        <div class="info-block">
+            <div class="pull-left">
+                Last Name:
+                <strong><h:outputText value="#{wizard.lastName()}"/></strong>
+            </div>
+        </div>
+
+        <h3>Your License:</h3>
+
+        <div class="wizard-form">
+            <h:form styleClass="form-horizontal">
+
+                <div class="control-group">
+                    <label class="control-label" for="drivingLicense">Driving License Number</label>
+                    <div class="controls">
+                        <h:inputText type="text" id="drivingLicense" placeholder="Email"
+                                     value="#{wizard.drivingLicense}" label="Driving Licnese">
+                            <f:validateRequired/>
+                            <f:validateRegex pattern="[A-Za-z0-9]+" />
+                        </h:inputText>
+                        <h:message for="drivingLicense" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    Registration Driving License Date:
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="dotrDay">Day</label>
+                    <div class="controls">
+                        <h:selectOneMenu id="dotrDay" value="#{wizard.dotrDay}"
+                                label="Registration Day">
+                            <f:selectItem itemLabel="----"  itemValue=""/>
+                            <f:selectItems value="#{wizard.daysOfTheMonth()}" var="day"
+                                           itemLabel="#{day}" itemValue="#{day}" />
+                            <f:validateRequired/>
+                        </h:selectOneMenu>
+                        <h:message for="dotrDay" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="dotrMonth">Month</label>
+                    <div class="controls">
+                        <h:selectOneMenu id="dotrMonth" value="#{wizard.dotrMonth}"
+                                         label="Registration Month">
+                            <f:selectItem itemLabel="----"  itemValue=""/>
+                            <f:selectItems value="#{wizard.monthsOfTheYear()}" />
+                            <f:validateRequired/>
+                        </h:selectOneMenu>
+                        <h:message for="dotrMonth" styleClass="form-error"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="dotrYear">Year</label>
+                    <div class="controls">
+                        <h:inputText id="dotrYear" value="#{wizard.dotrYear}"
+                                     label="Registration Year">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <h:message for="dotrYear" styleClass="form-error"/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <h:commandButton styleClass="btn btn-primary"
+                        action="#{wizard.submitPage2()}"
+                        value="Submit" />
+                &#160;
+                &#160;
+                <h:commandButton styleClass="btn btn-info"
+                                 immediate="true"
+                                 action="#{wizard.cancelApplication()}"
+                                 value="Cancel" />
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
