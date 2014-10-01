@@ -13,8 +13,41 @@ Requirements
 * Gradle 2.0
 
 
-Session Details
-------------------
+
+Installation
+--------------
+
+Download in stall GlassFish 4.0 some where
+
+
+> unzip  ~/Downloads/glassfish-4.0.1-b05-20140427.zip  -d /Library/opt
+  
+
+Configure your IDE to installation directory for GlassFish 4. 
+
+
+> echo $GLASSFISH_HOME
+/Library/opt/glassfish-4.0.1-b05-20140427
+
+
+Download Gradle 2.0 or on the Mac OS X, install using the GVM tool. With Gradle set up and configured to your PATH
+environmment variable, the following commands should work:
+
+
+> gradle clean
+
+> gradle test
+
+> gradle war
+
+> gradle build
+
+
+
+
+
+Tested and Verified
+---------------------
 
 Tested with WildFly 8.1 *DONE*
 Tested with GlassFish 4.0 *DONE*
