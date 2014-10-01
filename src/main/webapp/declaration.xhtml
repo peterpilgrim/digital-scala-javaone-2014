@@ -12,6 +12,10 @@
     <ui:define name="formArea">
         <h3>Your Details: </h3>
 
+        <p>
+            Application reference id := "#{wizard.applicationReferenceId}"
+        </p>
+
         <div class="info-block">
             <div class="pull-left">
                 Email:
@@ -27,13 +31,13 @@
         <div class="info-block">
             <div class="pull-left">
                 First Name:
-                <strong><h:outputText value="#{wizard.firstName()}"/></strong>
+                <strong><h:outputText value="#{wizard.firstName}"/></strong>
             </div>
         </div>
         <div class="info-block">
             <div class="pull-left">
                 Last Name:
-                <strong><h:outputText value="#{wizard.lastName()}"/></strong>
+                <strong><h:outputText value="#{wizard.lastName}"/></strong>
             </div>
         </div>
 
@@ -97,7 +101,7 @@
                     You will serve us beer, fish and chips for however long we require.
                     You cannot ever terminate this contract.
                     You will provide chocolate on Saturdays and Sundays.
-                    You will hand over the keys to the Honda Subaru.
+                    You will hand over the keys to your Honda Subaru car.
                     You will stay locked in vendor proprietary content.
                     You will give the soul and exclusive permission to raid your cloud storage.
                     You will give us no less than three shared Open SSL key so that we monitor you for affective length of this contract and
@@ -118,6 +122,7 @@
                         <h:message for="declaration" styleClass="form-error"/>
                     </div>
                 </div>
+                <br/>
                 <h:commandButton styleClass="btn btn-primary"
                                  action="#{wizard.submitDeclarationPage()}"
                                  value="Submit" />

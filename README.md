@@ -16,8 +16,51 @@ Requirements
 Session Details
 ------------------
 
-Test with WildFly 8.1 *DONE*
-Test with GlassFish 4.0 *DONE*
+Tested with WildFly 8.1 *DONE*
+Tested with GlassFish 4.0 *DONE*
+
+
+GlassFish 4.0 JMS Queue
+-------------------------
+
+JMS Set up
+
+
+First, start the application in IDEA or Eclipse that will launch the GlassFish application server. Otherwise, start
+GlassFish manually on your workstation. 
+
+Navigate to the GlassFish Adminstration console http://localhost:4848/common/index.jsf
+
+On the left hand pane, of the Admin page select the JMS node, then choose JMS Connection Factory. Create a new
+connection factory with the following information:
+
+
+JNDI name:          jms/OrderQueueConnectionFactory
+Resource type:      javax.jms.QueueConnectionFactory
+Description:        
+
+
+Save this new connection factory.
+
+
+Now select JMS node again and then choose Destination Resources. Create a new JMS destination with the following 
+properties: 
+
+JNDI name:                      jms/OrderQueue
+Physical Destination NAME:      OrderQueue
+Resource type:                  java.jms.Queue
+Description:
+
+
+Save this new queue.
+
+
+Redeploy the WAR file again and/or restart the GlassFish server. The application should now complete successfully 
+when the customer declares yes on the final wizard step. 
+
+
+
+
 
 
 Developing Java EE 7 Applications with Scala (CON2644)
@@ -48,6 +91,8 @@ This session will highlight and contrast the experience I had developing Scala s
 
 Peter Pilgrim
 September 2014
+JavaOne 
+
 
 Email: peter.pilgrim@gmail.com
 Blog: www.xenonique.co.uk/blog

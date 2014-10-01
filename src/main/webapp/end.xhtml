@@ -11,10 +11,31 @@
     <ui:define name="formArea">
         <h3>Confirmation</h3>
 
-        <p>Details: To Be Completed</p>
+        <div class="jumbotron">
+            <h1>Completion</h1>
+            <p>
+                Well Done, you completed the form!
+            </p>
+
+            <p>
+                Your is application reference is:
+                <br/>
+                <span class="application-reference">
+                  #{flash['lastApplicationReference']}
+                </span>
+            </p>
+
+            <p>
+                A message has been send down a pipe to a JMS Queue.
+                The next developer has an Agile user story <b>US7521</b>:
+                <br/>
+                As an applicant, when I complete the digital customer, I expect to receive an electronic mail
+                with the application reference and a summary of all of the details that I submitted.
+            </p>
+        </div>
 
         <div class="wizard-form">
-            Well Done, you completed the form!
+            <p> Here is some additional information:</p>
 
             <h2> Reader Conference Exercises</h2>
 

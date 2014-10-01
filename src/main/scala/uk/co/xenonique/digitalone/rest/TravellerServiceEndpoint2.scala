@@ -49,7 +49,7 @@ class TravellerServiceEndpoint2 {
    @Consumes(Array(MediaType.APPLICATION_JSON))
    def store( traveller: Traveller3): Response = {
      println(s"traveller = $traveller")
-     if (traveller.getDocNo().isDefined) {
+     if (!traveller.getDocNo().isDefined) {
        Response.status(
          Response.Status.BAD_REQUEST)
          .entity(ErrorMessage("E199", "Missing document No"))

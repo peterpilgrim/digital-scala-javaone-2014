@@ -20,9 +20,14 @@ package uk.co.xenonique.digitalone.app
  *******************************************************************************/
 
 import java.util.Date
+import javax.ejb.Stateless
 import javax.enterprise.context.{Conversation, ConversationScoped}
+import javax.faces.context.FacesContext
 import javax.inject.{Inject, Named}
+import javax.jms.{TextMessage, QueueSender, Queue, QueueSession}
 import javax.validation.constraints._
+
+import uk.co.xenonique.digitalone.jms.Order
 
 import scala.beans.BeanProperty
 
@@ -31,6 +36,9 @@ import scala.beans.BeanProperty
 class RegisterDrivingLicense extends Serializable {
   @Inject
   var conversation: Conversation = _;
+
+  @BeanProperty var applicationReferenceId: String = "XEN-" + RegisterDrivingLicense.randomAlpha(3) + "-" +
+    RegisterDrivingLicense.randomAlphaNumericString(3) + "-" + RegisterDrivingLicense.randomAlphaNumericString(3)
 
   @BeanProperty
   @NotNull
@@ -81,8 +89,13 @@ class RegisterDrivingLicense extends Serializable {
   @BeanProperty
   var declaration: Boolean = _
 
+
+  @Inject var submitter: RegisteredOrderSubmitter = _
+
+
   def jumpGettingStarted(): String = {
     beginConversation()
+    println(s"(1) +++++++++++++ applicationReference=$applicationReferenceId")
     "form1?faces-redirect=true"
   }
 
@@ -94,6 +107,7 @@ class RegisterDrivingLicense extends Serializable {
     println("  title="+title)
     println("  firstName="+firstName)
     println("  lastName="+lastName)
+    println(s"(2) +++++++++++++ applicationReference=$applicationReferenceId")
 
     "form2?faces-redirect=true"
   }
@@ -113,6 +127,7 @@ class RegisterDrivingLicense extends Serializable {
     cal.set(Calendar.YEAR, year)
 
     registrationDate = cal.getTime
+    println(s"(3) +++++++++++++ applicationReference=$applicationReferenceId")
 
     "form3?faces-redirect=true"
   }
@@ -125,19 +140,42 @@ class RegisterDrivingLicense extends Serializable {
     println("  region="+region)
     println("  postalCode="+postalCode)
 
-    endConversation()
+    println(s"(4) +++++++++++++ applicationReference=$applicationReferenceId")
 
     "declaration?faces-redirect=true"
   }
 
   def submitDeclarationPage(): String = {
-    endConversation()
     if ( !declaration ) {
       // The declaration was not signed
       cancelApplication()
     }
     else {
       // Here the form is complete
+      println(s"(5) +++++++++++++ applicationReference=$applicationReferenceId")
+      submitter.sendOrder(
+        s"""
+         |==== NEW DRIVING LICENSE REGISTRATION ====
+         |Application Order: ${applicationReferenceId}
+         |Title: ${title}
+         |Given name: ${firstName}
+         |Family name: ${lastName}
+         |Email: ${email}
+         |Registration Date: ${dotrDay}-${dotrMonth}-${dotrYear}
+         |Street1: ${street1}
+         |Street2: ${street2}
+         |City/Town: ${cityTown}
+         |Region: ${region}
+         |Postal Code: ${postalCode}
+         |Submission Date: ${new Date()}
+       """.stripMargin)
+
+      // Store the submitted id into a flash scope
+      val context = FacesContext.getCurrentInstance();
+      context.getExternalContext().getFlash().put("lastApplicationReference", applicationReferenceId );
+
+      endConversation()
+
       "end?faces-redirect=true"
     }
   }
@@ -188,15 +226,56 @@ class RegisterDrivingLicense extends Serializable {
     }
     javaMap
   }
+
+
 }
 
 object RegisterDrivingLicense {
   val hr = new java.util.Locale("hr", "HR")
   val en = new java.util.Locale("en_gb", "EN")
   val symbols = new java.text.DateFormatSymbols( en )
+
+  // See    http://alvinalexander.com/scala/creating-random-strings-in-scala
+
+  // 6 - random alphanumeric
+  def randomAlphaNumericString(length: Int): String = {
+    val chars = ('a' to 'z') ++ ('A' to 'Z') ++ ('0' to '9')
+    randomStringFromCharList(length, chars)
+  }
+
+  // 7 - random alpha
+  def randomAlpha(length: Int): String = {
+    val chars = ('a' to 'z') ++ ('A' to 'Z')
+    randomStringFromCharList(length, chars)
+  }
+
+  // used by #6 and #7
+  def randomStringFromCharList(length: Int, chars: Seq[Char]): String = {
+    val sb = new StringBuilder
+    for (i <- 1 to length) {
+      val randomNum = util.Random.nextInt(chars.length)
+      sb.append(chars(randomNum))
+    }
+    sb.toString
+  }
 }
 
 
 case class KeyValue[U,V]( @BeanProperty var key: U, @BeanProperty val value: V ) {
 
+}
+
+@Stateless
+class RegisteredOrderSubmitter {
+
+  // See the JMSResourceProducer.scala the CDI container will inject these properties
+  @Inject @Order var orderQueue: Queue = _
+  @Inject @Order var orderQueueSession: QueueSession = _
+
+  def sendOrder(text: String): Unit = {
+    val sender:QueueSender = orderQueueSession.createSender(orderQueue)
+    val message:TextMessage = orderQueueSession.createTextMessage()
+    message.setText(text);
+    sender.send(message)
+  }
 }

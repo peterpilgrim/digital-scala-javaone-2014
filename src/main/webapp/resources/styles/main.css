@@ -275,3 +275,8 @@ body {
 .controls {
     font-size: 1.25em;
 }
+
+.application-reference {
+    font-weight: bold;
+    font-size: 2.0em;
+}
