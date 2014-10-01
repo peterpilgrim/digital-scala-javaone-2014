@@ -73,15 +73,6 @@
             <element id="library" level="project" name="Gradle: scala-compiler-2.10.0" />
             <element id="library" level="project" name="Gradle: scala-reflect-2.10.0" />
           </element>
-          <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp/resources" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/cancel.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/declaration.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/end.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/form1.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/form2.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/form3.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/index.xhtml" />
-          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/template.xhtml" />
         </element>
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/digital-scala-javaee7/exploded/digital-scala-javaee7-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
@@ -606,9 +597,7 @@
         <root url="jar://$MAVEN_REPOSITORY$/javax/javaee-api/7.0/javaee-api-7.0.jar!/" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.ideaLibSources/javaee-api-7.0-sources.jar!/" />
-      </SOURCES>
+      <SOURCES />
     </library>
     <library name="Gradle: javax.mail-1.5.0">
       <CLASSES>

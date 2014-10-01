@@ -78,7 +78,8 @@ class FruitTest {
 object FruitTest {
   @Deployment
   def createDeployment():WebArchive = {
-    val war = ShrinkWrap.create(classOf[WebArchive], "test.war")
+    println("Hello World JavaOne!!!")
+    val war = ShrinkWrap.create(classOf[WebArchive], "test121.war")
       .addPackage("uk.co.xenonique.digitalone")
       .addPackage("uk.co.xenonique.digitalone.casex")
       .addAsLibrary( GradleDependency.resolve("org.scala-lang:scala-library:2.11.1") )

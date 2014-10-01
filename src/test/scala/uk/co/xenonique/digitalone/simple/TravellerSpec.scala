@@ -47,19 +47,19 @@ class TravellerSpec extends FlatSpec with Matchers {
     val t1 = new Traveller( "Kenneth", "Wayne", generateDob(1977, Calendar.JULY, 16), "52873915" )
     println( s"t1=$t1")
 
-    t1.getFamilyName() should be === "Wayne"
-    t1.getGivenName() should be === "Kenneth"
+    t1.getFamilyName() should be ( "Wayne" )
+    t1.getGivenName() should be ( "Kenneth" )
 //    t1.getDateOfBirth() should be === generateDob(1977, Calendar.JULY, 16)
-    t1.getDocNo() should be === "52873915"
+    t1.getDocNo() should be ( "52873915" )
 
     t1.setFamilyName("Smith")
     t1.setGivenName("Candice")
     t1.setDocNo("78124053")
     println( s"t1=$t1")
 
-    t1.getFamilyName() should be === "Smith"
-    t1.getGivenName() should be === "Candice"
+    t1.getFamilyName() should be ( "Smith" )
+    t1.getGivenName() should be ( "Candice" )
     //    t1.getDateOfBirth() should be === generateDob(1977, Calendar.JULY, 16)
-    t1.getDocNo() should be === "78124053"
+    t1.getDocNo() should be ( "78124053" )
   }
 }

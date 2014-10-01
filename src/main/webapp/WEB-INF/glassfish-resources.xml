@@ -12,4 +12,18 @@
         <property name="databaseName" value="/tmp/applicationDB/derby"/>
         <property name="createDatabase" value="create"/>
     </jdbc-connection-pool>
+    <!-- Configure GlassFish 4 to set up a JMS Queue Destination for this application -->
+    <!--
+    <admin-object-resource enabled="true"
+                           jndi-name="jms/OrderQueue"
+                           res-type="javax.jms.Queue"  res-adapter="jmsra">
+        <property name="Name" value="PhysicalQueue"/>
+    </admin-object-resource>
+    <connector-connection-pool name="jms/OrderQueueConnectionFactoryPool"
+                               connection-definition-name="javax.jms.QueueConnectionFactory"
+                               resource-adapter-name="jmsra"/>
+    <connector-resource enabled="true"
+                        jndi-name="jms/OrderQueueConnectionFactory"
+                        pool-name="jms/OrderQueueConnectionFactoryPool"  />
+                        -->
 </resources>

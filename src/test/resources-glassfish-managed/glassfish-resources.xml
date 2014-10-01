@@ -14,6 +14,7 @@
     </jdbc-connection-pool>
 
     <!-- Configure GlassFish 4 to set up a JMS Queue Destination for this application -->
+    <!--
     <admin-object-resource enabled="true"
                            jndi-name="jms/OrderQueue"
                            res-type="javax.jms.Queue"  res-adapter="jmsra">
@@ -25,4 +26,5 @@
     <connector-resource enabled="true"
                         jndi-name="jms/OrderQueueConnectionFactory"
                         pool-name="jms/OrderQueueConnectionFactoryPool"  />
+                        -->
 </resources>
