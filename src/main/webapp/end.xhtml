@@ -43,6 +43,8 @@
             <p>
                 The end of the form only has a text message. Extend the Conversation Form so that
                 applicant receive a unique reference number after completion.
+                (I completed this answer. The solution is to add application reference id as a property to the conversation scoped bean.
+                Initialise the reference id as construction. *PP*)
             </p>
             <h3> Exercise B </h3>
             <p>
@@ -71,6 +73,10 @@
                 The web application requires a message queue (a point-to-point).
                 First, create a JMS publisher that sends the applicant down the queue. Choose an appropriate
                 message type like MessageObject, which is the easiest or may be try JSON.
+
+                (*PP* I have created a JMS 2.0 publisher, so now you reuse this Scala stateless EJB and change the
+                message type)
+
                 Second, creates a JMS subscriber that reads the message and then sends the email to the applicant.
             </p>
             <p>

@@ -68,9 +68,9 @@ On the left hand pane, of the Admin page select the JMS node, then choose JMS Co
 connection factory with the following information:
 
 
-JNDI name:          jms/OrderQueueConnectionFactory
-Resource type:      javax.jms.QueueConnectionFactory
-Description:        
+> JNDI name:          jms/OrderQueueConnectionFactory
+> Resource type:      javax.jms.QueueConnectionFactory
+> Description:        
 
 
 Save this new connection factory.
@@ -79,10 +79,10 @@ Save this new connection factory.
 Now select JMS node again and then choose Destination Resources. Create a new JMS destination with the following 
 properties: 
 
-JNDI name:                      jms/OrderQueue
-Physical Destination NAME:      OrderQueue
-Resource type:                  java.jms.Queue
-Description:
+> JNDI name:                      jms/OrderQueue
+> Physical Destination NAME:      OrderQueue
+> Resource type:                  java.jms.Queue
+> Description:
 
 
 Save this new queue.

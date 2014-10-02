@@ -24,7 +24,7 @@ import javax.ejb.Stateless
 import javax.enterprise.context.{Conversation, ConversationScoped}
 import javax.faces.context.FacesContext
 import javax.inject.{Inject, Named}
-import javax.jms.{TextMessage, QueueSender, Queue, QueueSession}
+import javax.jms._
 import javax.validation.constraints._
 
 import uk.co.xenonique.digitalone.jms.Order
@@ -265,17 +265,30 @@ case class KeyValue[U,V]( @BeanProperty var key: U, @BeanProperty val value: V )
 
 }
 
+/**
+ * See the code in JMS2ResourceProducer.scala (or JMSResourceProducer.scala for JMS 1.1)
+ */
 @Stateless
 class RegisteredOrderSubmitter {
 
   // See the JMSResourceProducer.scala the CDI container will inject these properties
   @Inject @Order var orderQueue: Queue = _
-  @Inject @Order var orderQueueSession: QueueSession = _
 
+  // Uncomment for old JMS 1.1 style code
+  // @Inject @Order var orderQueueSession: QueueSession = _
+//
+//  def sendOrder_JMS1_1(text: String): Unit = {
+//    val sender:QueueSender = orderQueueSession.createSender(orderQueue)
+//    val message:TextMessage = orderQueueSession.createTextMessage()
+//    message.setText(text);
+//    sender.send(message)
+//  }
+
+  // Uncomment for the new JMS 2.0 style code
+  @Inject @Order var producer: JMSProducer = _
+
+  // JMS 2.0 is easier. CDI will produce the necessary JMS Producer
   def sendOrder(text: String): Unit = {
-    val sender:QueueSender = orderQueueSession.createSender(orderQueue)
-    val message:TextMessage = orderQueueSession.createTextMessage()
-    message.setText(text);
-    sender.send(message)
+    producer.send( orderQueue, text )
   }
 }

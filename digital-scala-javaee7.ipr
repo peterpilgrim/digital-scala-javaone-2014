@@ -597,7 +597,9 @@
         <root url="jar://$MAVEN_REPOSITORY$/javax/javaee-api/7.0/javaee-api-7.0.jar!/" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ideaLibSources/javaee-api-7.0-sources.jar!/" />
+      </SOURCES>
     </library>
     <library name="Gradle: javax.mail-1.5.0">
       <CLASSES>
