@@ -1,17 +1,22 @@
 README
 ========
 
-This is a sample project to demonstrate Scala and Java EE 7.
+This is a sample project to demonstrate Scala and Java EE 7 for the presentation at **JavaOne 2014**.
+
+Are you new to Java EE 7? Did you know I am the author of [*Java EE 7 Developer Handbook*](https://www.packtpub.com/application-development/java-ee-7-developer-handbook)?
 
 
 
 Requirements
 -------------
 
-* Scala 2.11
-* GlassFish 4 application server
-* Gradle 2.0
+* [**Scala 2.11**](http://scala-lang.org/download/)
+ 
+* [**GlassFish 4.1 application server**](https://glassfish.java.net/)
 
+* [**Gradle 2.0**](http://www.gradle.org/downloads)
+
+    * If you use Mac OS X or Linux then you can install Gradle using the [**GVM Groovy Environment Manager**](http://gvmtool.net/). GVM can also install Groovy, Grails, Griffon, etc
 
 
 Installation
@@ -34,15 +39,37 @@ Download Gradle 2.0 or on the Mac OS X, install using the GVM tool. With Gradle 
 environmment variable, the following commands should work:
 
 
+Generate IntelliJ projects file with the following command:
+
+> gradle idea
+
+Generate NetBeans projects file with the following command:
+
+> gradle netbeans
+
+Generate Eclipse projects file with the following command:
+
+> gradle eclipse
+
+
+To clean out the project, here is the command:
+
 > gradle clean
 
-> gradle test
-
-> gradle war
+In order to build, the entire project with Gradle use the following command:
 
 > gradle build
 
+To executes the tests in the project, use this following command:
 
+> gradle test
+
+If you simply want to see the WAR file, then execute this command:
+
+> gradle war
+
+
+Gradle creates it output in the `build` folder.
 
 
 
@@ -62,7 +89,7 @@ JMS Set up
 First, start the application in IDEA or Eclipse that will launch the GlassFish application server. Otherwise, start
 GlassFish manually on your workstation. 
 
-Navigate to the GlassFish Adminstration console http://localhost:4848/common/index.jsf
+Navigate to the GlassFish Administration console [http://localhost:4848/common/index.jsf](http://localhost:4848/common/index.jsf)
 
 On the left hand pane, of the Admin page select the JMS node, then choose JMS Connection Factory. Create a new
 connection factory with the following information:
@@ -70,10 +97,10 @@ connection factory with the following information:
 
 > JNDI name:          jms/OrderQueueConnectionFactory
 > Resource type:      javax.jms.QueueConnectionFactory
-> Description:        
+> Description:        <BLANK>
 
 
-Save this new connection factory.
+Save this new JMS connection factory.
 
 
 Now select JMS node again and then choose Destination Resources. Create a new JMS destination with the following 
@@ -82,10 +109,11 @@ properties:
 > JNDI name:                      jms/OrderQueue
 > Physical Destination NAME:      OrderQueue
 > Resource type:                  java.jms.Queue
-> Description:
+> Description:                    <BLANK>
+
+Save this new JMS queue.
 
 
-Save this new queue.
 
 
 Redeploy the WAR file again and/or restart the GlassFish server. The application should now complete successfully 
