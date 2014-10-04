@@ -121,6 +121,15 @@ when the customer declares yes on the final wizard step.
 
 
 
+Miscellany
+------------
+
+Are you using Intelli J 13.1 on Mac OS X and GlassFish 4.1?
+
+After upgrading to GlassFish 4.1, I found a strange error run a local managed server GlassFish execution: glassfish Server is not connected. Deploy is not available.
+
+The solution is to change the JVM Setting that IntelliJ runs under from (Apple) JDK 1.6 to JDK 1.7 or 8. If you change it suddenly you will get Retina edition font rendering as a bonus
+[http://stackoverflow.com/questions/17365498/problems-with-glassfish-4-debug-in-idea-12-1](http://stackoverflow.com/questions/17365498/problems-with-glassfish-4-debug-in-idea-12-1)
 
 
 
